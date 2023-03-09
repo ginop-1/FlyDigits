@@ -1,0 +1,27 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#qr-reader {
+    position: absolute;
+    right: 2%;
+    left: 2%;
+    width: 96%;
+    height: 96%;
+}
+
+#title {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 1em 0 1em 0;
+}
+
+.results {
+    text-align: center;
+}
