@@ -22,6 +22,17 @@ body {
     padding: 1em 0 1em 0;
 }
 
-.results {
+#qr-reader-results {
     text-align: center;
+}
+
+#loading {
+    /* animate it to go visible and invisible */
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
 }

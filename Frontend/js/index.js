@@ -44,9 +44,9 @@ docReady(function() {
             console.log(resultContainer);
             // Optional: To close the QR code scannign after the result is found
             _html5QrcodeScanner.clear();
-            document.getElementById("qr-reader-results").innerHTML += `<h1>Waiting server response...</h1>`
+            document.getElementById("qr-reader-results").innerHTML += `<h1 id="loading">Waiting for server response...</h1>`
             // TODO: send decodedText to the REST API and wait for the response
-            
+
         }
     }
     
