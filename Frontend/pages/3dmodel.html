@@ -4,25 +4,33 @@
 <head>
     <meta charset="utf-8" />
     <title>Flydigits</title>
+    <!-- A-FRAME -->
     <script src='https://aframe.io/releases/1.2.0/aframe.min.js'></script>
-    <script src='https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js'></script>s
-    <link rel="stylesheet" type="text/css" href="../style/zappar.css">
+    <!-- ZAPPAR -->
+    <script src='https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js'></script>
+    <!-- A-FRAME 3D TEXT -->
+    <script src="https://unpkg.com/aframe-text-geometry-component/dist/aframe-text-geometry-component.min.js"></script> 
+    <link rel="stylesheet" type="text/css" href="../style/3dmodel.css">
 </head>
-
 <body>
     <script type="module" src="../js/zappar.js"></script>
     <a-scene>
+        <a-assets>
+            <a-asset-item id="mikrotik_zapcode" src="../models/mikrotik_zapcode.zpt"/>
+        </a-assets>
         <!-- Ask user for camera permissions -->
         <a-entity zappar-permissions-ui id="permissions"></a-entity>
         <!-- Browser Compatibility -->
         <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
         <a-entity camera zappar-camera></a-entity>
-        <a-entity zappar-instant="placement-mode: true" id="instant-group">
-            <a-entity gltf-model="url(../models/Chair.glb)"></a-entity>
+        
+        <a-entity zappar-image="target: #mikrotik_zapcode" id="image-group">
+            <!-- place chair glb here -->
+            <!-- <a-entity gltf-model="url(../models/Chair.glb)" position="0 0 0"></a-entity> -->
+            <!-- <a-box position="-2 2 1" color="red"></a-box> -->
+            <a-entity position="-1 1 1" text-geometry="value: What's\nup" material="color: red"></a-entity>
         </a-entity>
-        <a-entity text="value: HELLO; color: red; width: 2;" position="0 0 0"></a-entity>
     </a-scene>
-    <div id="zappar-placement-ui">Tap here to place the object</div>
 </body>
 
 </html>

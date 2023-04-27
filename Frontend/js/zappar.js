@@ -1,18 +1,26 @@
-console.log("Using AFRAME", AFRAME.version);
+console.log("Using AFrame", AFRAME.version);
 console.log("Using ZapparAFrame", ZapparAFrame);
 
 window.addEventListener("load", setup);
 
 function setup() {
-    // When the user taps on the placement UI
-    const placementUI = document.getElementById("zappar-placement-ui");
-    placementUI.addEventListener("click", () => {
-        // Set placement-mode to false on the instant tracker group
-        const instantGroup = document.getElementById("instant-group");
-        instantGroup.setAttribute("zappar-instant", "placement-mode: false");
 
-        // Remove the placement UI
-        placementUI.remove();
-        }
-    );
+    const myImageGroup = document.getElementById("image-group");
+
+    let imageVisible = false;
+
+    myImageGroup.addEventListener("zappar-visible", () => {
+        // The image has appeared so show the group
+        myImageGroup.setAttribute("visible", "true");
+        imageVisible = true;
+    });
+
+    myImageGroup.addEventListener("zappar-notvisible", () => {
+        // The image has disappeared so hide the group after a short delay
+        imageVisible = false;
+        setTimeout(() => {
+            if (imageVisible === false) myImageGroup.setAttribute("visible", "false");
+        }, 500)
+    });
+
 }

@@ -6,22 +6,21 @@
 </head>
 
 <body>
-  <div id="overlay">
-    <!-- create a list of parameters -->
+  <!-- <div id="overlay">
     <ul>
-      <li>Model: <span id="model">ASDADASDASD</span></li>
-      <li>Scale: <span id="scale">ASDADASDASD</span></li>
-      <li>Rotation: <span id="rotation">ASDADASDASD</span></li>
-      <li>Position: <span id="position">ASDADASDASD</span></li>
+      <li>Model: <span id="model">Test Model</span></li>
+      <li>Param 1: <span id="scale">1</span></li>
+      <li>Param 2: <span id="rotation">2</span></li>
+      <li>Param 2: <span id="position">3</span></li>
     </ul>
-  </div>
+  </div> -->
   <div id="main-scene">
     <a-scene embedded background="blue">
       <!-- CAMERA -->
-      <a-entity camera wasd-controls look-controls="pointerLockEnabled: true;" position="0 1 0"></a-entity>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="900" height="900" color="green"></a-plane>
+      <a-entity camera wasd-controls look-controls position="0 1 0"></a-entity>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="900" height="900" color="#7be898"></a-plane>
       <a-entity position="0 0 -3" zappar-instant="placement-mode: true" id="instant-group">
-        <a-entity gltf-model="url(../models/Chair.glb)"></a-entity>
+        <a-entity id="3d-m" gltf-model="url(../models/pressa.glb)"></a-entity>
       </a-entity>
     </a-scene>
   </div>
