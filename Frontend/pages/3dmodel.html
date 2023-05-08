@@ -9,28 +9,27 @@
     <!-- ZAPPAR -->
     <script src='https://libs.zappar.com/zappar-aframe/2.0.0/zappar-aframe.js'></script>
     <!-- A-FRAME 3D TEXT -->
-    <script src="https://unpkg.com/aframe-text-geometry-component/dist/aframe-text-geometry-component.min.js"></script> 
+    <script src="https://unpkg.com/aframe-text-geometry-component/dist/aframe-text-geometry-component.min.js"></script>
+    <!-- A FRAME ARROW -->
+    <script src="https://unpkg.com/aframe-arrow-component/index.js"></script>
     <link rel="stylesheet" type="text/css" href="../style/3dmodel.css">
 </head>
+
 <body>
-    <script type="module" src="../js/zappar.js"></script>
-    <a-scene>
+    <a-scene cursor="rayOrigin:mouse">
         <a-assets>
-            <a-asset-item id="mikrotik_zapcode" src="../models/mikrotik_zapcode.zpt"/>
+            <a-asset-item id="target" src="../models/placeholder.zpt"/>
         </a-assets>
         <!-- Ask user for camera permissions -->
         <a-entity zappar-permissions-ui id="permissions"></a-entity>
         <!-- Browser Compatibility -->
         <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
         <a-entity camera zappar-camera></a-entity>
-        
-        <a-entity zappar-image="target: #mikrotik_zapcode" id="image-group">
-            <!-- place chair glb here -->
-            <!-- <a-entity gltf-model="url(../models/Chair.glb)" position="0 0 0"></a-entity> -->
-            <!-- <a-box position="-2 2 1" color="red"></a-box> -->
-            <a-entity position="-1 1 1" text-geometry="value: What's\nup" material="color: red"></a-entity>
-        </a-entity>
+        <a-entity zappar-image="target: #target" id="image-group"></a-entity>
+        <a-entity zappar-image="target: #target" id="arrow-group"></a-entity>
+        <script type="module" src="../js/zappar.js"></script>
     </a-scene>
+    <div id="zappar-placement-ui">Scan another object</div>
 </body>
 
 </html>
