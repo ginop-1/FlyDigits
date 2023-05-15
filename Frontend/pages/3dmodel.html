@@ -12,9 +12,10 @@
     <script src="https://unpkg.com/aframe-text-geometry-component/dist/aframe-text-geometry-component.min.js"></script>
     <!-- A FRAME ARROW -->
     <script src="https://unpkg.com/aframe-arrow-component/index.js"></script>
+    <!-- A FRAME SLICE 9 -->
+    <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../style/3dmodel.css">
 </head>
-
 <body>
     <a-scene cursor="rayOrigin:mouse">
         <a-assets>
@@ -25,11 +26,14 @@
         <!-- Browser Compatibility -->
         <a-entity zappar-compatibility-ui id="compatibility"></a-entity>
         <a-entity camera zappar-camera></a-entity>
-        <a-entity zappar-image="target: #target" id="image-group"></a-entity>
-        <a-entity zappar-image="target: #target" id="arrow-group"></a-entity>
+        <a-entity zappar-image="target: #target" id="background" class="tracking-group" material="color: red">
+            <!-- <a-plane position="0 0 0" rotation="0 0 0" width="2.5" height="2.5" color="#fff" margin="10px solid black"></a-plane> -->
+            <a-entity slice9="width: 2.5; height: 2.5; left: 20; right: 43; top: 20; bottom: 43; src: https://raw.githubusercontent.com/fernandojsg/aframe-slice9-component/master/examples/basic/tooltip.png"></a-entity>
+        </a-entity>
+        <a-entity zappar-image="target: #target" id="values-group" class="tracking-group"></a-entity>
+        <a-entity zappar-image="target: #target" id="arrow-group" class="tracking-group"></a-entity>
         <script type="module" src="../js/zappar.js"></script>
     </a-scene>
-    <div id="zappar-placement-ui">Scan another object</div>
+    <div id="re-scan-ui">Scan another object</div>
 </body>
-
 </html>

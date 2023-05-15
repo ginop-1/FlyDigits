@@ -10,7 +10,7 @@ let flashState = false; // false = off, true = on
 
 function setResult(label, qrResult) {
     scanner.stop();
-    let server_ip = "flydigitsforfermi.hopto.org:5000" // TODO: move to config file
+    let server_ip = "flydigitsforfermi.hopto.org" // TODO: move to config file
     console.log("result: ", qrResult);
     // make http request to server
     let url = "https://" + server_ip + "/sensor/?modelname=" + qrResult.data + "&to=2000-1-1 0:0:0"
@@ -28,8 +28,8 @@ function setResult(label, qrResult) {
         .then(response => response.json())
         .then(data => {
             if (data.status === "error") {
-                alert("Model not found");
                 scanner.start();
+                alert("Error: " + data.message);
                 return;
             }
             // data.modelName = qrResult.data;

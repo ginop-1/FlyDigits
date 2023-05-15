@@ -1,0 +1,272 @@
+/* Global styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+main,
+footer {
+    padding: 2em;
+}
+
+h1,
+h2 {
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Header styles */
+header {
+    /* circular fading color */
+    color: #fff;
+    background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+    -webkit-animation: 10s linear 0s normal none infinite animate;
+    -moz-animation: 10s linear 0s normal none infinite animate;
+    -ms-animation: 10s linear 0s normal none infinite animate;
+    -o-animation: 10s linear 0s normal none infinite animate;
+    animation: 10s linear 0s normal none infinite animate;
+
+}
+
+@-webkit-keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 500px 0;
+    }
+}
+
+@-moz-keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 500px 0;
+    }
+}
+
+@-ms-keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 500px 0;
+    }
+}
+
+@-o-keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 500px 0;
+    }
+}
+
+@keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 500px 0;
+    }
+}
+
+/* How it works section */
+.how-it-works img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+}
+
+/* CTA section */
+label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* ---- cube---- */
+
+.background--cube {
+    width: 200px;
+    height: 200px;
+    margin: 80px 0;
+    perspective: 500px;
+    float: right;
+  }
+  
+  .background--persp-cube {
+    perspective: 400px;
+  }
+  
+  .cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: translateZ(-100px);
+  }
+  
+  .background--hero {
+    height: 200px;
+    margin: 0 80px;
+    perspective: 700px;
+    border: none;
+    float: right;
+  }
+  
+  .cube--hero {
+    margin: 0 auto;
+  }
+  
+  .cube.is-spinning {
+    animation: spinCube 8s infinite ease-in-out;
+  }
+  
+  @keyframes spinCube {
+      0% { transform: translateZ(-100px) rotateX(  0deg) rotateY(  0deg); }
+    100% { transform: translateZ(-100px) rotateX(360deg) rotateY(360deg); }
+  }
+  
+  .cube__face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    line-height: 200px;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    text-align: right;
+  }
+  
+  .cube.is-backface-hidden .cube__face {
+    backface-visibility: hidden;
+  }
+  
+  .cube__face--front  { background: hsla(  0, 100%, 50%, 0.7); }
+  .cube__face--right  { background: hsla( 60, 100%, 50%, 0.7); }
+  .cube__face--back   { background: hsla(120, 100%, 50%, 0.7); }
+  .cube__face--left   { background: hsla(180, 100%, 50%, 0.7); }
+  .cube__face--top    { background: hsla(240, 100%, 50%, 0.7); }
+  .cube__face--bottom { background: hsla(300, 100%, 50%, 0.7); }
+  
+  .cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
+  .cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
+  .cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
+  .cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
+  .cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
+  .cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
+  
+  .cube.show-front  { transform: translateZ(-100px) rotateY(   0deg); }
+  .cube.show-right  { transform: translateZ(-100px) rotateY( -90deg); }
+  .cube.show-back   { transform: translateZ(-100px) rotateY(-180deg); }
+  .cube.show-left   { transform: translateZ(-100px) rotateY(  90deg); }
+  .cube.show-top    { transform: translateZ(-100px) rotateX( -90deg); }
+  .cube.show-bottom { transform: translateZ(-100px) rotateX(  90deg); }
+  
+  /* cube--step0 */
+  
+  .cube--step0 {
+    position: relative;
+    width: auto;
+    height: auto;
+    transform: none;
+  }
+  
+  .cube--step0 .cube__face {
+    display: inline-block;
+    position: static;
+    margin: 0 10px 10px 0;
+    transform: none;
+  }
+  
+  /* cube--step1 */
+  
+  .cube--step1 {
+    transform: none;
+  }
+  
+  .cube--step1 .cube__face {
+    transform: none;
+  }
+  
+  /* cube--step2 */
+  .cube--step2 {
+    transform: none;
+  }
+  
+  .cube--step2 .cube__face--front  { transform: rotateY(  0deg); }
+  .cube--step2 .cube__face--right  { transform: rotateY( 90deg); }
+  .cube--step2 .cube__face--back   { transform: rotateY(180deg); }
+  .cube--step2 .cube__face--left   { transform: rotateY(-90deg); }
+  .cube--step2 .cube__face--top    { transform: rotateX( 90deg); }
+  .cube--step2 .cube__face--bottom { transform: rotateX(-90deg); }
+  
+  /* cube--step3 */
+  
+  .cube--step3 {
+    transform: none;
+  }
+  
+  /* cube--rotate */
+  
+  .cube--rotate { transition: transform 1s; }
+
+  /* -- other stuff --- */
+  section {
+    padding: 2em;
+    border: #2980b9 2px solid;
+    border-radius: 5px;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0.16428578267244398) 100%); 
+  }
+
+  .right-text {
+    width: 100%;
+    height: 100%;
+    text-align: right;
+  }
+
+  /* ---- rotating smartphone ---- */
+
+    .smartphone {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        transform-style: preserve-3d;
+        transform: translateZ(-100px);
+        /* animation: spinning 8s infinite ease-in-out; */
+    }
+
+    @keyframes spinning {
+        0% {
+            transform: translateZ(-100px) rotateX(0deg) rotateY(0deg);
+        }
+
+        100% {
+            transform: translateZ(-100px) rotateX(360deg) rotateY(360deg);
+        }
+    }
+

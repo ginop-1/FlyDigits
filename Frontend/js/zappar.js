@@ -31,19 +31,19 @@ function changeSensor(index) {
     if (result.index >= result.length) {
         result.index = 1;
     }
-    const myImageGroup = document.getElementById("image-group");
-    myImageGroup.innerHTML = "";
-    generate3dTextList(myImageGroup);
+    const valuesGroup = document.getElementById("values-group");
+    valuesGroup.innerHTML = "";
+    generate3dTextList(valuesGroup);
 }
 
 function generate3dTextElement(coordinates, value, id) {
     return `<a-entity position="${coordinates}" scale="0.25 0.25 1" text-geometry="value: ${value}" material="color: green" id="${id}"></a-entity>`;
 }
 
-function generate3dTextList(myImageGroup) {
+function generate3dTextList(valuesGroup) {
     // add modelname 3d text + arrows
-    myImageGroup.innerHTML += `
-    <a-entity position="-1 0.6 1" scale="0.5 0.5 1" text-geometry="value: ${result[0].modelName}" material="color: red" id="model-name-3dtext"></a-entity>
+    valuesGroup.innerHTML += `
+    <a-entity position="-1 0.6 0.1" scale="0.5 0.5 1" text-geometry="value: ${result[0].modelName}" material="color: red" id="model-name-3dtext"></a-entity>
     `;
 
     var index = result.index;
@@ -61,10 +61,10 @@ function generate3dTextList(myImageGroup) {
         // last pressure
         var lastTime = result[index].measurements[result[index].measurements.length - 1][1].replace("T", " ").replace("Z", " ");
     } catch (error) {
-        console.log(error);
+        console.log(error);y
         return;
     }
-    myImageGroup.innerHTML += `
+    valuesGroup.innerHTML += `
         ${generate3dTextElement(`-1 0.2`, `${type}: ${lastMeasure} ${unit}`, `${type}-${index}`)}
         ${generate3dTextElement(`-1 -0.2`, `time: ${lastTime}`, `${type}-${index}-time`)}
         `;
@@ -72,15 +72,34 @@ function generate3dTextList(myImageGroup) {
 
 function setup() {
     const target = document.getElementById("target");
-    target.setAttribute("src", `../models/${result[0].modelName}.zpt`);
+    target.setAttribute("src", `../models/${result[0].modelName}.zpt`); // set model for tracking
 
-    const myImageGroup = document.getElementById("image-group");
-    generate3dTextList(myImageGroup);
+    // setup visibility of 3d text and arrows
+    const groups = document.getElementsByClassName("tracking-group"); // all tracking groups
+    let is3dVisible = false;
 
-    const arrowGroup = document.getElementById("arrow-group");
+    for (let i = 0; i < groups.length; i++) {
+        groups[i].addEventListener("zappar-visible", () => {
+            // The image has appeared so show the group
+            groups[i].setAttribute("visible", "true");
+            is3dVisible = true;
+        });
+        groups[i].addEventListener("zappar-notvisible", () => {
+            // The image has disappeared so hide the group after a short delay
+            is3dVisible = false;
+            setTimeout(() => {
+                if (is3dVisible === false) groups[i].setAttribute("visible", "false");
+            }, 500)
+        });
+    }
+
+    const valuesGroup = document.getElementById("values-group"); // container for 3d text
+    generate3dTextList(valuesGroup);
+
+    const arrowGroup = document.getElementById("arrow-group"); // container for arrows
     arrowGroup.innerHTML += `
-    <a-entity id="left-arrow" arrow="length: 0.5; direction: -1 0 0" position="-0.75 -1 -1" scale="1 6 1"></a-entity>
-    <a-entity id="right-arrow" arrow="length: 0.5; direction: 1 0 0" position="0.75 -1 -1" scale="1 6 1"></a-entity>
+    <a-entity id="left-arrow" arrow="length: 0.5; direction: -1 0 0; color: red" position="-0.75 -1 0.1" scale="1 6 1"></a-entity>
+    <a-entity id="right-arrow" arrow="length: 0.5; direction: 1 0 0; color: red" position="0.75 -1 0.1" scale="1 6 1"></a-entity>
     `;
 
     // left arrow\
@@ -93,27 +112,11 @@ function setup() {
     rightArrow.addEventListener("click", () => {
         changeSensor(1);
     });
-
-    let imageVisible = false;
-
-    myImageGroup.addEventListener("zappar-visible", () => {
-        // The image has appeared so show the group
-        myImageGroup.setAttribute("visible", "true");
-        imageVisible = true;
-    });
-
-    myImageGroup.addEventListener("zappar-notvisible", () => {
-        // The image has disappeared so hide the group after a short delay
-        imageVisible = false;
-        setTimeout(() => {
-            if (imageVisible === false) myImageGroup.setAttribute("visible", "false");
-        }, 500)
-    });
 }
 
 // rescan button
-const placementUI = document.getElementById("zappar-placement-ui");
-placementUI.addEventListener("click", function () {
+const placementUI = document.getElementById("re-scan-ui");
+placementUI.addEventListener("click", () => {
     window.location.href = "scanner.html";
 });
 
