@@ -13,7 +13,7 @@ function setResult(label, qrResult) {
     let server_ip = "flydigitsforfermi.hopto.org" // TODO: move to config file
     console.log("result: ", qrResult);
     // make http request to server
-    let url = "https://" + server_ip + "/sensor/?modelname=" + qrResult.data + "&to=2000-1-1 0:0:0"
+    let url = "https://" + server_ip + "/sensor/?modelname=" + qrResult.data;
     fetch(url, {
         "headers": {
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -29,7 +29,7 @@ function setResult(label, qrResult) {
         .then(data => {
             if (data.status === "error") {
                 scanner.start();
-                alert("Error: " + data.message);
+                alert("Error: " + data.motivation);
                 return;
             }
             // data.modelName = qrResult.data;
